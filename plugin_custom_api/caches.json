@@ -1,0 +1,9 @@
+{
+    "hooks": "./cartridge/scripts/hooks.json",
+    "caches": [
+        {
+            "id": "AccessToken",
+            "expireAfterSeconds": 1600
+        }
+    ]
+}

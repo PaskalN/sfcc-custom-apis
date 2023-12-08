@@ -1,0 +1,19 @@
+{
+    "endpoints": [
+        {
+            "endpoint": "getContentSlot",
+            "schema": "schema.yaml",
+            "implementation": "script"
+        },
+        {
+            "endpoint": "getCategoryContentSlot",
+            "schema": "schema.yaml",
+            "implementation": "script"
+        },
+        {
+            "endpoint": "getContentAssets",
+            "schema": "schema.yaml",
+            "implementation": "script"
+        }
+    ]
+}

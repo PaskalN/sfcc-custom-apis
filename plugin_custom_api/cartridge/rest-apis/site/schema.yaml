@@ -1,0 +1,41 @@
+openapi: 3.0.0
+info:
+  version: 1.0.5
+  title: Site Preferences
+components:
+  securitySchemes:
+    ShopperToken:
+      type: http
+      scheme: bearer
+paths:
+  /get-preferences:
+    get:
+      summary: "Get Specific Site Preferences"
+      operationId: getSitePreferences
+      parameters:
+        - in: query
+          name: siteId
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the site
+        - in: query
+          name: locale
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the site locale
+        - in: query
+          name: c_segment
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the site custom preference group
+      responses:
+        200:
+          description: OK
+security:
+  - ShopperToken: []

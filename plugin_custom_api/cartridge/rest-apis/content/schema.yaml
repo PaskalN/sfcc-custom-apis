@@ -1,0 +1,107 @@
+openapi: 3.0.0
+info:
+  version: 1.0.5
+  title: Site Content Slot
+components:
+  securitySchemes:
+    ShopperToken:
+      type: http
+      scheme: bearer
+paths:
+  /get-slots:
+    get:
+      summary: "Get Site Content Slot"
+      operationId: getContentSlot
+      parameters:
+        - in: query
+          name: siteId
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the site
+        - in: query
+          name: locale
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the site locale
+        - in: query
+          name: c_ids
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the slot ids - object
+      responses:
+        200:
+          description: OK
+  /get-category-slot:
+    get:
+      summary: "Get Category Content Slot"
+      operationId: getCategoryContentSlot
+      parameters:
+        - in: query
+          name: siteId
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the site
+        - in: query
+          name: locale
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the site locale
+        - in: query
+          name: c_ids
+          required: true
+          schema:
+            type: object
+            minLength: 1
+            description: The identifier of the slot ids - object
+        - in: query
+          name: c_category
+          required: false
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the slot category id
+      responses:
+        200:
+          description: OK
+  /get-assets:
+    get:
+      summary: "Get Content Assets"
+      operationId: getContentAssets
+      parameters:
+        - in: query
+          name: siteId
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the site
+        - in: query
+          name: locale
+          required: true
+          schema:
+            type: string
+            minLength: 1
+            description: The identifier of the site locale
+        - in: query
+          name: c_ids
+          required: true
+          schema:
+            type: string
+            pattern: ^\(.*\)
+            minLength: 1
+            description: Identifies the asset ids - array            
+      responses:
+        200:
+          description: OK
+security:
+  - ShopperToken: []
