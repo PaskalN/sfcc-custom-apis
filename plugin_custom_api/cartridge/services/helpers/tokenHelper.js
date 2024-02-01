@@ -32,6 +32,22 @@ function getAccessToken () {
     return token;
 }
 
+function getAccessTokenForResetPassword () {
+    try {
+        const service = require('*/cartridge/services/ocapiService');    
+        const getToken = service.token.getResetPassword()
+        const response = getToken.call();
+
+        const token = response.object;
+        token.expires_in_timestamp = token.expires_in * 1000 + Date.now()
+
+        return token
+    } catch (err) {
+        var x = err
+        return null
+    }
+}
+
 function getShopperToken() {
     const headers = request.httpHeaders;
     return headers.get('shopper-token');
@@ -39,5 +55,6 @@ function getShopperToken() {
 
 module.exports = {
     getAccessToken: getAccessToken,
-    getShopperToken: getShopperToken
+    getShopperToken: getShopperToken,
+    getAccessTokenForResetPassword: getAccessTokenForResetPassword
 }

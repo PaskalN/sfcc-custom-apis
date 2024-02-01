@@ -22,7 +22,23 @@ const ocapiServices = {
                 const service = LocalServiceRegistry.createService(serviceName, serviceConfig);
 
                 return service;
-            } catch (err) {                
+            } catch (err) {
+                serviceLogger.error('OCAPI Service ERROR: {0}', JSON.stringify(err))
+                return () => {
+                    return null
+                }
+            }
+        },
+        getResetPassword: () => {
+            try {
+                // Local
+                const serviceConfig = require('*/cartridge/services/configurations/oauthTokenResetPassword');
+
+                // Results
+                const service = LocalServiceRegistry.createService(serviceName, serviceConfig);
+
+                return service;
+            } catch (err) {
                 serviceLogger.error('OCAPI Service ERROR: {0}', JSON.stringify(err))
                 return () => {
                     return null

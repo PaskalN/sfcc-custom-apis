@@ -1,15 +1,18 @@
 'use strict'
 
 function getOrganizationAssets() {
+    
     const httpURL = request.httpURL.toString();
     const urlAssets = httpURL.replace('https://', '').split('/');
     const host = urlAssets[0];
     const shortCode = host.split('.')[0];
     const organizationID = urlAssets[5];
+    const tenant = request.httpHost.split('.')[0]
 
     return {
         shortCode: shortCode,
-        organizationID: organizationID
+        organizationID: organizationID,
+        tenant: tenant
     }
 }
 

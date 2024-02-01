@@ -1,7 +1,7 @@
 'use strict';
+
 // Script Api
 const Logger = require('dw/system/Logger');
-
 
 module.exports = function() {
     try {
