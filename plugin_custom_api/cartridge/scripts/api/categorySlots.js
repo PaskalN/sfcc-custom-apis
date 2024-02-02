@@ -3,7 +3,7 @@
 const Logger = require('dw/system/Logger');
 
 // Local
-module.exports = function() {    
+module.exports = function(asString) {    
     try {
         // Local
         const slotUtils = require('*/cartridge/scripts/util/slots');
@@ -27,12 +27,15 @@ module.exports = function() {
         }
         
         const result = slotUtils.parseSlots(slots, locale, siteID, accessToken)
-        return JSON.stringify(result);
+        return asString ? JSON.stringify(result) : result
     } catch (err) {
         Logger.error('ERROR: {0}', JSON.stringify(err));
-        return JSON.stringify({
+        
+        const errResult = {
             error: true,
             message: JSON.stringify(err)
-        });
+        };
+
+        return asString ? JSON.stringify(errResult) : errResult;
     }
 }

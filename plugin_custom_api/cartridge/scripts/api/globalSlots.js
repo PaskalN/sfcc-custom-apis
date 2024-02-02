@@ -3,7 +3,7 @@
 const Logger = require('dw/system/Logger');
 
 // Local
-module.exports = function() {    
+module.exports = function(asString) {    
     try {
         
         // Local
@@ -20,7 +20,7 @@ module.exports = function() {
 
         const accessToken = tokenHelper.getAccessToken();        
         const slots = slotHelper.callContentSlots(slotIds, siteID, locale, accessToken);
-
+        
         if (!Array.isArray(slots)) {
             return JSON.stringify({
                 error: true
@@ -28,12 +28,18 @@ module.exports = function() {
         }
         
         const result = slotUtils.parseSlots(slots, locale, siteID, accessToken)
-        return JSON.stringify(result);
+        return asString ? JSON.stringify(result) : result;
     } catch (err) {
         Logger.error('ERROR: {0}', JSON.stringify(err));
-        return JSON.stringify({
+
+        const errResult = {
             error: true,
             message: JSON.stringify(err)
+        };
+
+        return JSON.stringify({
+            error: true,
+            message: asString ? JSON.stringify(errResult) : errResult
         });
     }
 }

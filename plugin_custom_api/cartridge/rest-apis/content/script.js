@@ -1,5 +1,6 @@
 // Script Api
 const Status = require('dw/system/Status');
+const RESTResponseMgr = require("dw/system/RESTResponseMgr");
 
 exports.getContentSlot = function () {
     // Local
@@ -8,9 +9,10 @@ exports.getContentSlot = function () {
 
     const result = globalSlotsApi()
 
+    response.setVaryBy("price_promotion");
     response.setContentType("application/json");
-    response.getWriter().println(result);
-    response.setExpires(Date.now() + _SETTINGS.CACHE.CONTENT_SLOTS);
+    response.setExpires(Date.now() + _SETTINGS.CACHE.CONTENT_SLOTS);    
+    RESTResponseMgr.createSuccess(result).render();
 
     return new Status(Status.OK)
 }
@@ -23,9 +25,9 @@ exports.getCategoryContentSlot = function () {
 
     const result = categorySlotsApi()
 
-    response.setContentType("application/json");
-    response.getWriter().println(result);
+    response.setContentType("application/json");    
     response.setExpires(Date.now() + _SETTINGS.CACHE.CATEGORY_CONTENT_SLOTS);
+    RESTResponseMgr.createSuccess(result).render();
 
     return new Status(Status.OK)
 }
@@ -39,8 +41,8 @@ exports.getContentAssets = function () {
     const result = contentAssetApi()
 
     response.setContentType("application/json");
-    response.getWriter().println(result);
     response.setExpires(Date.now() + _SETTINGS.CACHE.CONTENT_ASSETS);
+    RESTResponseMgr.createSuccess(result).render();
 
     return new Status(Status.OK)
 }

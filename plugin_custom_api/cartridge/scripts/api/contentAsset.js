@@ -2,7 +2,7 @@
 // Script Api
 const Logger = require('dw/system/Logger');
 
-module.exports = function() {    
+module.exports = function(asString) {    
     try {
         // Local
         const assetHelper = require('*/cartridge/services/helpers/assetHelper');
@@ -23,12 +23,15 @@ module.exports = function() {
             });
         }        
         
-        return JSON.stringify(result);
+        return asString ? JSON.stringify(result) : result;
     } catch (err) {
         Logger.error('ERROR: {0}', JSON.stringify(err));
-        return JSON.stringify({
+
+        const errResult = {
             error: true,
             message: JSON.stringify(err)
-        });
+        };
+
+        return asString ? JSON.stringify(errResult) : errResult;
     }
 }

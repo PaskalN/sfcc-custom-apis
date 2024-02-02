@@ -2,6 +2,7 @@
 const Logger = require('dw/system/Logger');
 const Status = require('dw/system/Status');
 const CacheMgr = require('dw/system/CacheMgr');
+const RESTResponseMgr = require("dw/system/RESTResponseMgr");
 
 exports.getSitePreferences = function (test) {
     // Local
@@ -11,8 +12,8 @@ exports.getSitePreferences = function (test) {
     const result = sitePreferenceApi()
 
     response.setContentType("application/json");
-    response.getWriter().println(result);
     response.setExpires(Date.now() + _SETTINGS.CACHE.SITE_PREFERENCES);
+    RESTResponseMgr.createSuccess(result).render();
 
     return new Status(Status.OK)
 }

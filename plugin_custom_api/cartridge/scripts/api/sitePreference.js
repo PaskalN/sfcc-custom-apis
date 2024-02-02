@@ -3,14 +3,14 @@
 const Logger = require('dw/system/Logger');
 
 
-module.exports = function() {
+module.exports = function(asString) {
     try {
         // Local
         const preference = require('*/cartridge/scripts/util/preference');
 
         const result = preference.getResult();
 
-        return JSON.stringify(result);
+        return asString ? JSON.stringify(result) : result;
     } catch (err) {
         Logger.error('ERROR: {0}', JSON.stringify(err));
         return JSON.stringify({
