@@ -8,12 +8,12 @@ components:
       type: oauth2
       flows:
         authorizationCode:
-          authorizationUrl: https://zzuz_008.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_zzuz_008/oauth2/authorize
-          tokenUrl: https://zzuz_008.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_zzuz_008/oauth2/token
+          authorizationUrl: https://[REPLACE_WITH_SHORT_CODE].commercecloud.salesforce.com/shopper/auth/v1/organizations/[REPLACE_WITH_ORG_ID]/oauth2/authorize
+          tokenUrl: https://[REPLACE_WITH_SHORT_CODE].commercecloud.salesforce.com/shopper/auth/v1/organizations/[REPLACE_WITH_ORG_ID]/oauth2/token
           scopes:
             c_apiScope_r: Read loyalty information of a customer
         clientCredentials:
-          tokenUrl: https://zzuz_008.commercecloud.salesforce.com/shopper/auth/v1/organizations/f_ecom_zzuz_008/oauth2/token
+          tokenUrl: https://[REPLACE_WITH_SHORT_CODE].commercecloud.salesforce.com/shopper/auth/v1/organizations/[REPLACE_WITH_ORG_ID]/oauth2/token
           scopes:
             c_apiScope_r: Read loyalty information of a customer
 paths:
@@ -69,7 +69,7 @@ paths:
           name: c_ids
           required: true
           schema:
-            type: string
+            type: object
             minLength: 1
             description: The identifier of the slot ids - object
         - in: query
