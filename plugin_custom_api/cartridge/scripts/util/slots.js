@@ -171,6 +171,18 @@ function parseSlots(slots, locale, siteId, token) {
     return result;
 }
 
+function parseCategorySlots(slots, locale, siteId, token) {
+    const currentSlots = slots || [];
+    const result = {};
+
+    currentSlots.forEach(slot => {
+        result[slot.slot_id] = getAvailableSlotConfigurations(slot, locale, siteId, token);
+    });
+
+    return result;
+}
+
 module.exports = {
-    parseSlots: parseSlots
+    parseSlots: parseSlots,
+    parseCategorySlots: parseCategorySlots
 };
