@@ -1,0 +1,9 @@
+{
+    "endpoints": [
+        {
+            "endpoint": "getSitePreferences",
+            "schema": "schema.yaml",
+            "implementation": "script"
+        }
+    ]
+}
