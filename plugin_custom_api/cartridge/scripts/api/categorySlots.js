@@ -26,7 +26,7 @@ module.exports = function(asString) {
             });
         }
         
-        const result = slotUtils.parseSlots(slots, locale, siteID, accessToken)
+        const result = slotUtils.parseCategorySlots(slots, locale, siteID, accessToken)
         return asString ? JSON.stringify(result) : result
     } catch (err) {
         Logger.error('ERROR: {0}', JSON.stringify(err));
