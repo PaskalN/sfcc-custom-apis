@@ -33,8 +33,13 @@ function getAccessToken () {
 }
 
 function getShopperToken() {
+    const parameters = require('*/cartridge/scripts/util/parameters');
     const headers = request.httpHeaders;
-    return headers.get('shopper-token');
+
+    const shopperTokenHeader = headers.get('shopper-token')
+    const shopperTokenParameter = parameters.get('c_shopper_token')
+
+    return shopperTokenHeader || shopperTokenParameter
 }
 
 module.exports = {
