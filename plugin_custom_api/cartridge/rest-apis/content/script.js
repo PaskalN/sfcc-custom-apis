@@ -25,6 +25,7 @@ exports.getCategoryContentSlot = function () {
 
     const result = categorySlotsApi()
 
+    response.setVaryBy("price_promotion");
     response.setContentType("application/json");    
     response.setExpires(Date.now() + _SETTINGS.CACHE.CATEGORY_CONTENT_SLOTS);
     RESTResponseMgr.createSuccess(result).render();
